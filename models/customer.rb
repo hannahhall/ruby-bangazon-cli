@@ -13,6 +13,7 @@ class Customer < Interface
 
   def save
     @created_at = DateTime.now.to_s
+    @updated_at = DateTime.now.to_s
     @id = create "Insert Into customers(name, last_login, created_at, updated_at) Values (
       '#{@name}', 
       '#{@last_login}', 

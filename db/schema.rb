@@ -13,17 +13,10 @@ class Schema
         `updated_at`	datetime NOT NULL
       );"
 
-      db.execute "CREATE TABLE IF NOT EXISTS `product_types` (
-        `id`	        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-        `name`	      varchar NOT NULL,
-        `created_at`	datetime NOT NULL,
-        `updated_at`	datetime NOT NULL
-      );"
 
       db.execute "CREATE TABLE IF NOT EXISTS `products` (
         `id`	            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         `name`	          varchar NOT NULL,
-        `product_type_id`	integer NOT NULL,
         `price`	          integer NOT NULL,
         `description`	    text NOT NULL,
         `customer_id`	    integer NOT NULL,
@@ -72,7 +65,6 @@ class Schema
       db.execute "Drop Table orders" 
       db.execute "Drop Table payment_types"
       db.execute "Drop Table products"
-      db.execute "Drop Table product_types" 
       db.execute "Drop Table customers"
     rescue SQLite3::Exception => e 
       puts "Exception occurred"

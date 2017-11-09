@@ -14,8 +14,6 @@ class TestCustomerController < MiniTest::Test
     customer = Customer.new(
       name: "Name",
       last_login: DateTime.now,
-      created_at: DateTime.now,
-      updated_at: DateTime.now
     )
     @controller.create(customer)
     @controller.create(customer)
@@ -25,8 +23,6 @@ class TestCustomerController < MiniTest::Test
     customer = Customer.new(
       name: "Name2",
       last_login: DateTime.now,
-      created_at: DateTime.now,
-      updated_at: DateTime.now
     )
     new_customer = @controller.create(customer)
     assert_operator new_customer.id, :>, 0
@@ -43,15 +39,11 @@ class TestCustomerController < MiniTest::Test
   def test_edit_returns_Customer
     customer = @controller.create(Customer.new(
       name: "Name2",
-      last_login: DateTime.now,
-      created_at: DateTime.now,
-      updated_at: DateTime.now
-    )
-    updated_customer = @controller.edit(@customer)
+      last_login: DateTime.now
+    ))
+    updated_customer = @controller.edit(customer)
     assert_instance_of Customer, updated_customer
   end
-
-  
 
   def teardown
     Schema.delete(@filename)
