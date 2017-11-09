@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative '../models/customer.rb'
 require 'date'
 require_relative '../db/schema.rb'
-
+require_relative '../db/interface.rb'
 
 class TestCustomerClass < MiniTest::Test
 
@@ -13,7 +13,6 @@ class TestCustomerClass < MiniTest::Test
     @customer = Customer.new(
       name: "Name",
       last_login: DateTime.now.to_s,
-      created_at: DateTime.now.to_s,
       updated_at: DateTime.now.to_s
     )
   end

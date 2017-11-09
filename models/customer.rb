@@ -1,17 +1,18 @@
 require 'sqlite3'
+require 'date'
 require_relative '../db/interface.rb'
 class Customer < Interface
   attr_accessor :name, :last_login, :created_at, :updated_at, :id
-  def initialize (name: nil, last_login: nil, created_at: nil, updated_at: nil, id: 0)
+  def initialize (name: nil, last_login: nil, updated_at: nil, id: 0, created_at: nil)
     @id = id
     @name = name
     @last_login = last_login
-    @created_at = created_at
     @updated_at = updated_at
-    super()
+    @created_at = created_at
   end
 
   def save
+    @created_at = DateTime.now.to_s
     @id = create "Insert Into customers(name, last_login, created_at, updated_at) Values (
       '#{@name}', 
       '#{@last_login}', 
